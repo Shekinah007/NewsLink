@@ -23,7 +23,10 @@ function App() {
   return (
     <div className="App">
       <Header />
-      <p>{newsData[0].content && newsData[0].content}</p>
+      <p>{newsData[0].content}</p>
+      <p>{newsData[0].description}</p>
+      <a href="{newsData[0].url}"> More.. </a>
+      <a href={newsData[0].url}>Hahahha</a>
       <p>Hss</p>
       {/* <p>{newsData}</p> */}
       {/* <p>{name}</p> */}
