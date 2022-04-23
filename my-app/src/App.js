@@ -2,37 +2,57 @@ import React from "react";
 import Header from "./Components/Header.js";
 import NewsBody from "./Components/NewsBody.js";
 
-function App() {
+export default function App() {
   // console.clear();
-  let [newsData, setNewsData] = React.useState([
-    {
-      // content: "Hello World",
-    },
-  ]);
+  let [q, setQ] = React.useState("cow");
+  // React.useEffect(function () {
+  //   const NewsAPI = require("nwsapi");
+  //   const newsapi = new NewsAPI("bd662b9c617d48bca5aa4e291b6ea52f");
+  //   // To query top headlines
+  //   // All options passed to topHeadlines are optional,
+  //   //but you need to include at least one of them
+  //   newsapi.v2
+  //     .topHeadlines({
+  //       q: "trump",
+  //       category: "politics",
+  //       language: "en",
+  //       country: "us",
+  //     })
+  //     .then((response) => {
+  //       console.log(response);
+  //     });
+  // }, []);
+
+  let [newsData, setNewsData] = React.useState([]);
 
   React.useEffect(function () {
     console.log("Use Effect");
     fetch(
-      "https://newsapi.org/v2/everything?q=dog&from=2022-03-23&sortBy=publishedAt&language=en&apiKey=bd662b9c617d48bca5aa4e291b6ea52f"
+      "https://newsapi.org/v2/everything?q=" +
+        q +
+        "&from=2022-03-23&sortBy=publishedAt&language=en&apiKey=bd662b9c617d48bca5aa4e291b6ea52f"
     )
       .then((res) => res.json())
       .then((answer) => setNewsData(answer.articles));
   }, []);
+
+  let bodyOfNews = newsData.map((item) => {
+    return (
+      <NewsBody
+        title={item.title}
+        description={item.description}
+        content={item.content}
+        link={item.url}
+        imageUrl={item.urlToImage}
+      />
+    );
+  });
   // console.log("This is the obtained DATA ", newsData[4].content);
   // console.log("News Data Articles: ", newsData.articles[1]);
   return (
     <div className="App">
       <Header />
-      <p>{newsData[0].content}</p>
-      <p>{newsData[0].description}</p>
-      <a href="{newsData[0].url}"> More.. </a>
-      <a href={newsData[0].url}>Hahahha</a>
-      <p>Hss</p>
-      {/* <p>{newsData}</p> */}
-      {/* <p>{name}</p> */}
-      {/* <NewsBody newsObject={newsData.description} /> */}
+      {bodyOfNews}
     </div>
   );
 }
-
-export default App;
