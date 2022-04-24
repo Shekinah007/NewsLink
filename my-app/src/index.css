@@ -7,9 +7,48 @@ body {
   -moz-osx-font-smoothing: grayscale;
   color: black;
 }
+h1, h2, h4 {
+  margin: 10px;
+}
 .newsBody {
   margin-top: 4px;
+  padding: 5px;
   /* background-color: grey */
   width: 70vw;
+  text-align:center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+  margin-top: 5px;
+  background-color: antiquewhite;
+}
+.text {
+  display: flex;
+  flex-direction: column;
+  /* align-items: center;
+  justify-content: center; */
+}
+.textAndImage {
+  display: flex;
+  /* align-items: center;
+  justify-content: center; */
+}
+.categoriesNavBar {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  position: fixed;
+  margin-top: 100px;
+  /* margin-bottom:auto; */
+  background-color: aquamarine;
+}
+
+li {
+  list-style: none;
+}
+.search {
+  position: fixed;
 }
 
