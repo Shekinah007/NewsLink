@@ -38,6 +38,8 @@ h1, h2, h4 {
   position: fixed;
   margin-top: 100px;
   width: 250px;
+
+  animation: fadeInLeft 1.5s;
 }
 
 li {
@@ -49,7 +51,6 @@ li {
 }
 .categoryButtons {
   height: 30px;
-  /* margin-top: 5px; */
   width:60%;
   transition: 0.1s;
 }
@@ -58,4 +59,18 @@ li {
  height: 30px;
  
 }
+.text {
+  animation: fadeInLeft 1s;
+}
 
+
+@keyframes fadeInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-50px)
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0)
+  }
+}

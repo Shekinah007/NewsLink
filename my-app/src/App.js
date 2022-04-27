@@ -76,7 +76,6 @@ export default function App() {
       <button onClick={search} className="search">
         ClickToSearch
       </button>
-      {/* {newBodyOfNews} */}
       {bodyOfNews}
     </div>
   );
