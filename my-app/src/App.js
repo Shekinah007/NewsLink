@@ -1,9 +1,12 @@
 import React from "react";
+import axios from "axios";
 import Header from "./Components/Header.js";
 import NewsBody from "./Components/NewsBody.js";
 import CategoriesNavBar from "./Components/CategoriesNavBar.js";
+// import Enfold from "./enfold.min.js";
 
 export default function App() {
+  // Enfold({});
   // console.clear();
   let date = new Date();
   let today =
@@ -13,6 +16,8 @@ export default function App() {
   // let names = section.id;
   // console.log("NAMES ID: ", names);
   ///////////////////////////////////////////////////////////////////
+
+  let [newsToggle, setNewsToggle] = React.useState(false);
   let [q, setQ] = React.useState("cats");
   function search() {
     setQ(prompt("Please enter your query"));
@@ -20,15 +25,26 @@ export default function App() {
   }
   let [newsData, setNewsData] = React.useState([]);
   React.useEffect(
+    // function () {
+    //   fetch(
+    //     "https://newsapi.org/v2/everything?q=" +
+    //       q +
+    //       "&from=" +
+    //       today +
+    //       "&sortBy=relevancy&language=en&apiKey=bd662b9c617d48bca5aa4e291b6ea52f"
+    //   )
+    //     .then((res) => res.json())
+    //     .then((answer) => setNewsData(answer.articles));
+    // },
     function () {
-      fetch(
-        "https://newsapi.org/v2/everything?q=" +
-          q +
-          "&from=" +
-          today +
-          "&sortBy=relevancy&language=en&apiKey=bd662b9c617d48bca5aa4e291b6ea52f"
-      )
-        .then((res) => res.json())
+      axios
+        .get(
+          "https://newsapi.org/v2/everything?q=" +
+            q +
+            "&from=" +
+            today +
+            "&sortBy=relevancy&language=en&apiKey=bd662b9c617d48bca5aa4e291b6ea52f"
+        )
         .then((answer) => setNewsData(answer.articles));
     },
     [q]
@@ -56,7 +72,6 @@ export default function App() {
     [currentCategory]
   );
 
-  let [newsToggle, setNewsToggle] = React.useState(false);
   let bodyOfNews = (newsToggle ? newsData : newsByCategory).map((item) => {
     return (
       <NewsBody
